@@ -22,11 +22,13 @@ public class YamlConfiguration {
 
     /**
      * Creates a new {@link YamlConfiguration}
+     * @param path Path to the file from resources
+     *             You must include to file extension
      */
-    public YamlConfiguration(String fileName) {
+    public YamlConfiguration(String path) {
 
         // Get config file
-        this.file = new File("src/main/resources/" + fileName + ".yml");
+        this.file = new File("src/main/resources/" + path);
 
         // Create file if it doesn't exist
         if (!this.file.exists()) {

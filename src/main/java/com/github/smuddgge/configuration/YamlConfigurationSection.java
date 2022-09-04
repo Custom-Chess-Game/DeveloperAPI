@@ -52,14 +52,14 @@ public class YamlConfigurationSection implements ConfigurationSelection {
 
     @Override
     public Object get(String path) {
-        if (this.get(path) == null) {
-            throw new YamlConfigurationException(YamlConfigurationExceptionType.PATH_DOESNT_EXIST, path);
-        }
-
         // If the path is within a different section
         if (path.contains(".")) {
             String key = path.split("\\.")[0];
             return this.getSection(key).get(path.replace(key + ".", ""));
+        }
+
+        if (this.data.get(path) == null) {
+            throw new YamlConfigurationException(YamlConfigurationExceptionType.PATH_DOESNT_EXIST, path);
         }
 
         return this.data.get(path);
