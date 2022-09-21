@@ -22,6 +22,7 @@ public class YamlConfiguration {
 
     /**
      * Creates a new {@link YamlConfiguration}
+     *
      * @param path Path to the file from resources
      *             You must include to file extension
      */
@@ -34,8 +35,7 @@ public class YamlConfiguration {
         if (!this.file.exists()) {
             try {
                 this.file.createNewFile();
-            }
-            catch (IOException exception) {
+            } catch (IOException exception) {
                 exception.printStackTrace();
             }
         }
@@ -51,14 +51,14 @@ public class YamlConfiguration {
             Yaml yaml = new Yaml();
             this.data = yaml.load(inputStream);
 
-        }
-        catch (FileNotFoundException exception) {
+        } catch (FileNotFoundException exception) {
             exception.printStackTrace();
         }
     }
 
     /**
      * Used to get the config data
+     *
      * @return Yaml configuration section
      */
     public YamlConfigurationSection get() {

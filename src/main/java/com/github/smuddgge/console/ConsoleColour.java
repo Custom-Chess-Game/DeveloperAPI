@@ -10,6 +10,7 @@ public enum ConsoleColour {
 
     /**
      * Used to parse a message colours
+     *
      * @param message Message to parse
      * @return Parsed message
      */

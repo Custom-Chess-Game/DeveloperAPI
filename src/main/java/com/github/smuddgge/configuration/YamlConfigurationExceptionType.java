@@ -15,6 +15,7 @@ public enum YamlConfigurationExceptionType {
 
     /**
      * Used to create a new enum
+     *
      * @param message The error message
      */
     YamlConfigurationExceptionType(String message) {
@@ -30,6 +31,7 @@ public enum YamlConfigurationExceptionType {
 
     /**
      * Used to get the message and replace the placeholder with a variable
+     *
      * @param variable To replace with the placeholder
      * @return The message formatted with the variable
      */

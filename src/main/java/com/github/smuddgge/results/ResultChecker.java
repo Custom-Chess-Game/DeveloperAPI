@@ -3,13 +3,15 @@ package com.github.smuddgge.results;
 import java.util.Objects;
 
 /**
- * Represents a result
+ * <h2>Represents a result checker</h2>
+ * Used to check results to make sure they are correct
  */
 public class ResultChecker {
 
     /**
      * Used to check a {@link Result} type
-     * @param value Value to check
+     *
+     * @param value  Value to check
      * @param result Result to check against
      * @return This instance to chain multiple checks
      */
@@ -21,6 +23,7 @@ public class ResultChecker {
 
     /**
      * Used to check an exact value
+     *
      * @param value Value to check
      * @param match Value to match
      * @return This instance to chain multiple checks

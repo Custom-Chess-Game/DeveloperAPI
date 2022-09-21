@@ -17,6 +17,7 @@ public class YamlConfigurationSection implements ConfigurationSelection {
 
     /**
      * Used to create a configuration section
+     *
      * @param data The data in the config
      */
     public YamlConfigurationSection(Map<String, Object> data) {
@@ -25,9 +26,10 @@ public class YamlConfigurationSection implements ConfigurationSelection {
 
     /**
      * Used to get a configuration section
+     *
      * @return YamlConfigurationSection
-     *         Error if path does not exist
-     *         Null if not a configuration section
+     * Error if path does not exist
+     * Null if not a configuration section
      */
     public YamlConfigurationSection getSection(String path) {
         if (!(this.get(path) instanceof Map)) return null;

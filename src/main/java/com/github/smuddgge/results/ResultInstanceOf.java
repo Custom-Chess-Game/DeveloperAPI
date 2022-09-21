@@ -13,8 +13,9 @@ public class ResultInstanceOf implements Result {
 
     /**
      * Used to create a new {@link ResultInstanceOf}
+     *
      * @param object The class
-     * @param <T> The type of class
+     * @param <T>    The type of class
      */
     public <T> ResultInstanceOf(Class<T> object) {
         this.object = object;
