@@ -1,10 +1,12 @@
-package com.github.smuddgge.database;
+package com.github.smuddgge.database.sqlite;
 
 import com.github.smuddgge.console.Console;
 import com.github.smuddgge.console.ConsoleColour;
+import com.github.smuddgge.database.*;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Represents a sqlite database
@@ -28,6 +30,11 @@ public class SQLiteDatabase implements Database {
     private boolean usingDatabase;
 
     /**
+     * The list of registered tables
+     */
+    private ArrayList<Table> tables;
+
+    /**
      * Used to create a connection to a sqlite database
      * @param path The path of witch the database file exists
      *             from the resources folder
@@ -49,7 +56,7 @@ public class SQLiteDatabase implements Database {
         // Try to connect to the database
         try {
 
-            this.connection = DriverManager.getConnection(file.getAbsolutePath()u);
+            this.connection = DriverManager.getConnection(file.getAbsolutePath());
 
             if (this.connection == null) {
                 Console.warn("Unable to connect to the database");
@@ -73,14 +80,52 @@ public class SQLiteDatabase implements Database {
     public boolean createTable(Table table) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("CREATE TABLE IF NOT EXISTS `").append(collection.getName()).append("` (");
-        builder.append("`id` TEXT PRIMARY KEY");
+        builder.append("CREATE TABLE IF NOT EXISTS `").append(table.getName()).append("` (");
 
-        return true;
+        // Build the primary keys
+        for (Field field : table.getFields(FieldKeyType.PRIMARY)) {
+            String fieldType = SQLiteDatabase.getSqliteType(field.getValueType());
+
+            if (fieldType == null) continue;
+
+            builder.append("`{key}` {type} PRIMARY KEY, "
+                    .replace("{key}", field.getKey())
+                    .replace("{type}", fieldType)
+            );
+        }
+
+        // Build the foreign keys
+        for (Field field : table.getFields(FieldKeyType.FOREIGN)) {
+            String fieldType = SQLiteDatabase.getSqliteType(field.getValueType());
+
+            if (fieldType == null) continue;
+
+            builder.append("`{key}` {type} FOREIGN KEY, "
+                    .replace("{key}", field.getKey())
+                    .replace("{type}", fieldType)
+            );
+        }
+
+        // Build other fields
+        for (Field field : table.getFields(FieldKeyType.FIELD)) {
+            String fieldType = SQLiteDatabase.getSqliteType(field.getValueType());
+
+            if (fieldType == null) continue;
+
+            builder.append("`{key}` {type}, "
+                    .replace("{key}", field.getKey())
+                    .replace("{type}", fieldType)
+            );
+        }
+
+        builder.append(");");
+
+        // Execute the statement
+        return this.executeStatement(builder.toString());
     }
 
     @Override
-    public Table getTable(String name) {
+    public SQLiteTable getTable(String name) {
         return null;
     }
 
@@ -89,7 +134,7 @@ public class SQLiteDatabase implements Database {
      * @param sql Statement to execute
      * @return True if successful
      */
-    private boolean executeStatement(String sql) {
+    public boolean executeStatement(String sql) {
         if (!this.usingDatabase) {
             Console.warn("Tried to use the database when not connected");
             return false;
@@ -114,7 +159,7 @@ public class SQLiteDatabase implements Database {
      * @param sql Statement to execute
      * @return Result set
      */
-    private ResultSet executeQuery(String sql) {
+    public ResultSet executeQuery(String sql) {
         if (!this.usingDatabase) {
             Console.warn("Tried to use the database when not connected");
             return null;
@@ -130,6 +175,18 @@ public class SQLiteDatabase implements Database {
             this.usingDatabase = false;
         }
 
+        return null;
+    }
+
+    /**
+     * Used to turn field value types into sqlite value types
+     * For example, 'string' turns into 'text'
+     * @param fieldValueType The value type to convert
+     * @return String representing the sqlite type
+     */
+    public static String getSqliteType(FieldValueType fieldValueType) {
+        if (fieldValueType == FieldValueType.INTEGER) return "INTEGER";
+        if (fieldValueType == FieldValueType.STRING) return "text";
         return null;
     }
 }

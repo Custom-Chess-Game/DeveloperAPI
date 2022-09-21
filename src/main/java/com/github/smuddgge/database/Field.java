@@ -10,7 +10,8 @@ public class Field {
      * This is used when creating the table so the database
      * knows what type of value will be held
      */
-    private FieldType fieldType;
+    private FieldValueType fieldType;
+    private FieldKeyType keyType;
 
     private String key;
     private Object value;
@@ -18,15 +19,20 @@ public class Field {
     /**
      * Used to create a new field
      * @param key The key of the field
-     * @param fieldType The type of value that the field will contain
+     * @param valueType The type of value that the field will contain
      */
-    public Field(String key, FieldType fieldType) {
+    public Field(String key, FieldValueType valueType, FieldKeyType keyType) {
         this.key = key;
-        this.fieldType = fieldType;
+        this.fieldType = valueType;
+        this.keyType = keyType;
     }
 
-    public FieldType getFieldType() {
+    public FieldValueType getValueType() {
         return this.fieldType;
+    }
+
+    public FieldKeyType getKeyType() {
+        return this.keyType;
     }
 
     public String getKey() {

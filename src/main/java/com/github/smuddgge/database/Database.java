@@ -12,7 +12,8 @@ public interface Database {
     boolean setup();
 
     /**
-     * Used to create a table in the database
+     * Used to create a table in the database if it doesn't exist
+     * This method may also register the table in the class
      * @return True if successfully created a table
      */
     boolean createTable(Table table);

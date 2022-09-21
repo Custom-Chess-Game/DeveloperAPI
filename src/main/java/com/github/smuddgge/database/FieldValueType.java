@@ -1,5 +1,5 @@
 package com.github.smuddgge.database;
 
-public enum FieldType {
+public enum FieldValueType {
     STRING, INTEGER
 }
