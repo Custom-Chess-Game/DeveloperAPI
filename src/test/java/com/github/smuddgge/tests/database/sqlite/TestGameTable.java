@@ -4,7 +4,6 @@ import com.github.smuddgge.console.Console;
 import com.github.smuddgge.database.Record;
 import com.github.smuddgge.database.data.GameRecord;
 import com.github.smuddgge.database.data.GameTable;
-import com.github.smuddgge.database.data.PlayerRecord;
 import com.github.smuddgge.database.data.PlayerTable;
 import com.github.smuddgge.database.sqlite.SQLiteDatabase;
 import com.github.smuddgge.results.ResultChecker;
@@ -37,6 +36,8 @@ public class TestGameTable {
         gameRecord.uuid = UUID.randomUUID().toString();
         gameRecord.player1 = UUID.randomUUID().toString();
         gameRecord.player2 = UUID.randomUUID().toString();
+        gameRecord.winningPlayer = gameRecord.player1;
+        gameRecord.winningColour = "WHITE";
         gameRecord.log = "moves[]";
         gameRecord.timeStamp = String.valueOf(System.currentTimeMillis());
 
@@ -57,6 +58,8 @@ public class TestGameTable {
                 .expect(gameRecord.uuid, firstRecord.uuid)
                 .expect(gameRecord.player1, firstRecord.player1)
                 .expect(gameRecord.player2, firstRecord.player2)
+                .expect(gameRecord.winningPlayer, firstRecord.winningPlayer)
+                .expect(gameRecord.winningColour, firstRecord.winningColour)
                 .expect(gameRecord.timeStamp, firstRecord.timeStamp)
                 .expect(gameRecord.log, firstRecord.log);
     }

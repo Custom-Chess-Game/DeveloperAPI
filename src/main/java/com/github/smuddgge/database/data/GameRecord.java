@@ -20,6 +20,9 @@ public class GameRecord extends Record {
     @FieldAnnotation
     public String timeStamp;
 
+    @FieldAnnotation
+    public String winningColour;
+
     @FieldAnnotation(fieldKeyType = FieldKeyType.FOREIGN)
     @ForeignKey(tableReferenceName = "Player", tableReferenceValue = "uuid")
     public String player1;
@@ -27,4 +30,8 @@ public class GameRecord extends Record {
     @FieldAnnotation(fieldKeyType = FieldKeyType.FOREIGN)
     @ForeignKey(tableReferenceName = "Player", tableReferenceValue = "uuid")
     public String player2;
+
+    @FieldAnnotation(fieldKeyType = FieldKeyType.FOREIGN)
+    @ForeignKey(tableReferenceName = "Player", tableReferenceValue = "uuid")
+    public String winningPlayer;
 }

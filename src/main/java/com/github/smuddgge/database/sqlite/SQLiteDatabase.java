@@ -39,6 +39,7 @@ public class SQLiteDatabase implements Database {
      * Used to create a connection to a sqlite database
      *
      * @param fileName The name of the database file
+     *                 without the extension specified.
      */
     public SQLiteDatabase(String fileName) {
         this.fileName = fileName;
