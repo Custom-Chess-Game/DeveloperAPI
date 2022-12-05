@@ -7,6 +7,8 @@ import com.github.smuddgge.database.data.GameTable;
 import com.github.smuddgge.database.data.PlayerTable;
 import com.github.smuddgge.database.sqlite.SQLiteDatabase;
 import com.github.smuddgge.results.ResultChecker;
+import com.github.smuddgge.results.ResultInstanceOf;
+import com.github.smuddgge.results.ResultNotNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -53,6 +55,9 @@ public class TestGameTable {
         Console.log("UUID : " + firstRecord.uuid);
         Console.log("Player 1 : " + firstRecord.player1);
         Console.log("Player 2 : " + firstRecord.player2);
+
+        new ResultChecker()
+                .expect(gameTable.sum("timeStamp"), new ResultInstanceOf(Integer.class));
 
         new ResultChecker()
                 .expect(gameRecord.uuid, firstRecord.uuid)

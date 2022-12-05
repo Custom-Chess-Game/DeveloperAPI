@@ -140,4 +140,25 @@ public abstract class SQLiteTable implements Table {
 
         return this.database.executeStatement(builder.toString());
     }
+
+    /**
+     * Used to sum field values.
+     *
+     * @param field The field to sum.
+     * @return The value of the summed up fields.
+     */
+    public int sum(String field) {
+        String statement = "SELECT SUM(" + field + ")" +
+                " FROM " + this.getName();
+
+        ResultSet set = this.database.executeQuery(statement);
+
+        try {
+            return set.getInt("sum(" + field + ")");
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return -1;
+    }
 }

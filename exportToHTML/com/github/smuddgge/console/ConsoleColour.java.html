@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>ConsoleColour.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #77b767; font-style: italic;}
+.s4 { color: #629755; font-weight: bold; font-style: italic;}
+.s5 { color: #6a8759;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ConsoleColour.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.github.smuddgge.console</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s2">/**</span>
+<a name="l4"><span class="ln">4    </span></a> <span class="s2">* </span><span class="s3">&lt;h2&gt;</span><span class="s2">Represents a colour displayed in the console</span><span class="s3">&lt;/h2&gt;</span>
+<a name="l5"><span class="ln">5    </span></a> <span class="s2">* This enum {</span><span class="s4">@link </span><span class="s2">ConsoleColour} can be used in {</span><span class="s4">@link </span><span class="s2">Console}</span>
+<a name="l6"><span class="ln">6    </span></a> <span class="s2">* print methods to add colour in the console.</span>
+<a name="l7"><span class="ln">7    </span></a> <span class="s2">*/</span>
+<a name="l8"><span class="ln">8    </span></a><span class="s0">public enum </span><span class="s1">ConsoleColour {</span>
+<a name="l9"><span class="ln">9    </span></a>    <span class="s1">RESET</span><span class="s0">, </span><span class="s1">GRAY</span><span class="s0">, </span><span class="s1">GREEN</span><span class="s0">, </span><span class="s1">YELLOW</span><span class="s0">, </span><span class="s1">PINK</span><span class="s0">;</span>
+<a name="l10"><span class="ln">10   </span></a>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s2">/**</span>
+<a name="l12"><span class="ln">12   </span></a>     <span class="s2">* Used to parse a message colours</span>
+<a name="l13"><span class="ln">13   </span></a>     <span class="s2">*</span>
+<a name="l14"><span class="ln">14   </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">message Message to parse</span>
+<a name="l15"><span class="ln">15   </span></a>     <span class="s2">* </span><span class="s4">@return </span><span class="s2">Parsed message</span>
+<a name="l16"><span class="ln">16   </span></a>     <span class="s2">*/</span>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s0">public static </span><span class="s1">String parse(String message) {</span>
+<a name="l18"><span class="ln">18   </span></a>        <span class="s0">return </span><span class="s1">message</span>
+<a name="l19"><span class="ln">19   </span></a>                <span class="s1">.replace(</span><span class="s5">&quot;RESET&quot;</span><span class="s0">, </span><span class="s5">&quot;</span><span class="s0">\033</span><span class="s5">[0m&quot;</span><span class="s1">)</span>
+<a name="l20"><span class="ln">20   </span></a>                <span class="s1">.replace(</span><span class="s5">&quot;GRAY&quot;</span><span class="s0">, </span><span class="s5">&quot;</span><span class="s0">\033</span><span class="s5">[0;37m&quot;</span><span class="s1">)</span>
+<a name="l21"><span class="ln">21   </span></a>                <span class="s1">.replace(</span><span class="s5">&quot;GREEN&quot;</span><span class="s0">, </span><span class="s5">&quot;</span><span class="s0">\033</span><span class="s5">[0;32m&quot;</span><span class="s1">)</span>
+<a name="l22"><span class="ln">22   </span></a>                <span class="s1">.replace(</span><span class="s5">&quot;YELLOW&quot;</span><span class="s0">, </span><span class="s5">&quot;</span><span class="s0">\033</span><span class="s5">[0;33m&quot;</span><span class="s1">)</span>
+<a name="l23"><span class="ln">23   </span></a>                <span class="s1">.replace(</span><span class="s5">&quot;PINK&quot;</span><span class="s0">, </span><span class="s5">&quot;</span><span class="s0">\033</span><span class="s5">[0;35m&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l24"><span class="ln">24   </span></a>    <span class="s1">}</span>
+<a name="l25"><span class="ln">25   </span></a><span class="s1">}</span>
+<a name="l26"><span class="ln">26   </span></a></pre>
+</body>
+</html>
