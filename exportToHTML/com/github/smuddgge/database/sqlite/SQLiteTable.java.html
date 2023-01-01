@@ -162,7 +162,28 @@ SQLiteTable.java</font>
 <a name="l140"><span class="ln">140  </span></a>
 <a name="l141"><span class="ln">141  </span></a>        <span class="s0">return this</span><span class="s1">.database.executeStatement(builder.toString())</span><span class="s0">;</span>
 <a name="l142"><span class="ln">142  </span></a>    <span class="s1">}</span>
-<a name="l143"><span class="ln">143  </span></a><span class="s1">}</span>
-<a name="l144"><span class="ln">144  </span></a></pre>
+<a name="l143"><span class="ln">143  </span></a>
+<a name="l144"><span class="ln">144  </span></a>    <span class="s2">/**</span>
+<a name="l145"><span class="ln">145  </span></a>     <span class="s2">* Used to sum field values.</span>
+<a name="l146"><span class="ln">146  </span></a>     <span class="s2">*</span>
+<a name="l147"><span class="ln">147  </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">field The field to sum.</span>
+<a name="l148"><span class="ln">148  </span></a>     <span class="s2">* </span><span class="s4">@return </span><span class="s2">The value of the summed up fields.</span>
+<a name="l149"><span class="ln">149  </span></a>     <span class="s2">*/</span>
+<a name="l150"><span class="ln">150  </span></a>    <span class="s0">public int </span><span class="s1">sum(String field) {</span>
+<a name="l151"><span class="ln">151  </span></a>        <span class="s1">String statement = </span><span class="s5">&quot;SELECT SUM(&quot; </span><span class="s1">+ field + </span><span class="s5">&quot;)&quot; </span><span class="s1">+</span>
+<a name="l152"><span class="ln">152  </span></a>                <span class="s5">&quot; FROM &quot; </span><span class="s1">+ </span><span class="s0">this</span><span class="s1">.getName()</span><span class="s0">;</span>
+<a name="l153"><span class="ln">153  </span></a>
+<a name="l154"><span class="ln">154  </span></a>        <span class="s1">ResultSet set = </span><span class="s0">this</span><span class="s1">.database.executeQuery(statement)</span><span class="s0">;</span>
+<a name="l155"><span class="ln">155  </span></a>
+<a name="l156"><span class="ln">156  </span></a>        <span class="s0">try </span><span class="s1">{</span>
+<a name="l157"><span class="ln">157  </span></a>            <span class="s0">return </span><span class="s1">set.getInt(</span><span class="s5">&quot;sum(&quot; </span><span class="s1">+ field + </span><span class="s5">&quot;)&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l158"><span class="ln">158  </span></a>        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(SQLException exception) {</span>
+<a name="l159"><span class="ln">159  </span></a>            <span class="s1">exception.printStackTrace()</span><span class="s0">;</span>
+<a name="l160"><span class="ln">160  </span></a>        <span class="s1">}</span>
+<a name="l161"><span class="ln">161  </span></a>
+<a name="l162"><span class="ln">162  </span></a>        <span class="s0">return </span><span class="s1">-</span><span class="s6">1</span><span class="s0">;</span>
+<a name="l163"><span class="ln">163  </span></a>    <span class="s1">}</span>
+<a name="l164"><span class="ln">164  </span></a><span class="s1">}</span>
+<a name="l165"><span class="ln">165  </span></a></pre>
 </body>
 </html>
